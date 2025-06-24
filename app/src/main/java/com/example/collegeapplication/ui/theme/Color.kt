@@ -67,7 +67,7 @@ val BlueSurface = Color(0xFFE1F5FE)
 val BlueOnSurface = Color(0xFF002F4B)
 
 // --- Boy Theme DARK ---
-val BluePrimaryDark = Color(0xFF01579B)
+val BluePrimaryDark = Color(0xFF00BFFF)
 val BlueOnPrimaryDark = Color(0xFFFFFFFF)
 val BluePrimaryContainerDark = Color(0xFF00344A)
 val BlueOnPrimaryContainerDark = Color(0xFFB3E5FC)

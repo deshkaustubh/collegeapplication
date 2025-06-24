@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.collegeapplication.fmc.FMCScreen
 import com.example.collegeapplication.screens.fillMyCycle.FillMyCycleScreen
 import com.example.collegeapplication.screens.fillMyCycle.FillMyCycleViewModel
 import com.example.collegeapplication.ui.theme.CollegeApplicationTheme
@@ -19,9 +20,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             CollegeApplicationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    FillMyCycleScreen(
-                        viewModel = viewModel<FillMyCycleViewModel>()
-                    )
+//                    FillMyCycleScreen(
+//                        viewModel = viewModel<FillMyCycleViewModel>()
+//                    )
+                    FMCScreen()
                 }
             }
         }

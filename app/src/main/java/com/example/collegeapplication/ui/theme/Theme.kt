@@ -1,75 +1,97 @@
 package com.example.collegeapplication.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
-
 enum class GenderTheme { GIRL, BOY }
 
-// If you want a custom DarkColorScheme, define it here or import it
-val DarkColorScheme = darkColorScheme(
-    // Example dark colors, replace with your custom ones
+// --- GIRL LIGHT color scheme ---
+fun girlLightColorScheme(): ColorScheme = lightColorScheme(
+    primary = PinkPrimary,
+    onPrimary = PinkOnPrimary,
+    primaryContainer = PinkPrimaryContainer,
+    onPrimaryContainer = PinkOnPrimaryContainer,
+    secondary = PinkSecondary,
+    onSecondary = PinkOnSecondary,
+    secondaryContainer = PinkSecondaryContainer,
+    onSecondaryContainer = PinkOnSecondaryContainer,
+    tertiary = PinkTertiary,
+    onTertiary = PinkOnTertiary,
+    tertiaryContainer = PinkTertiaryContainer,
+    onTertiaryContainer = PinkOnTertiaryContainer,
+    background = PinkBackground,
+    onBackground = PinkOnBackground,
+    surface = PinkSurface,
+    onSurface = PinkOnSurface,
+)
+
+// --- GIRL DARK color scheme ---
+fun girlDarkColorScheme(): ColorScheme = darkColorScheme(
+    primary = PinkPrimaryDark,
+    onPrimary = PinkOnPrimaryDark,
+    primaryContainer = PinkPrimaryContainerDark,
+    onPrimaryContainer = PinkOnPrimaryContainerDark,
+    secondary = PinkSecondaryDark,
+    onSecondary = PinkOnSecondaryDark,
+    secondaryContainer = PinkSecondaryContainerDark,
+    onSecondaryContainer = PinkOnSecondaryContainerDark,
+    tertiary = PinkTertiaryDark,
+    onTertiary = PinkOnTertiaryDark,
+    tertiaryContainer = PinkTertiaryContainerDark,
+    onTertiaryContainer = PinkOnTertiaryContainerDark,
+    background = PinkBackgroundDark,
+    onBackground = PinkOnBackgroundDark,
+    surface = PinkSurfaceDark,
+    onSurface = PinkOnSurfaceDark,
+)
+
+// --- BOY LIGHT color scheme ---
+fun boyLightColorScheme(): ColorScheme = lightColorScheme(
     primary = BluePrimary,
     onPrimary = BlueOnPrimary,
+    primaryContainer = BluePrimaryContainer,
+    onPrimaryContainer = BlueOnPrimaryContainer,
     secondary = BlueSecondary,
     onSecondary = BlueOnSecondary,
+    secondaryContainer = BlueSecondaryContainer,
+    onSecondaryContainer = BlueOnSecondaryContainer,
     tertiary = BlueTertiary,
     onTertiary = BlueOnTertiary,
+    tertiaryContainer = BlueTertiaryContainer,
+    onTertiaryContainer = BlueOnTertiaryContainer,
     background = BlueBackground,
     onBackground = BlueOnBackground,
     surface = BlueSurface,
     onSurface = BlueOnSurface,
 )
 
-fun getColorScheme(gender: GenderTheme): ColorScheme {
-    return when (gender) {
-        GenderTheme.GIRL -> lightColorScheme(
-            primary = PinkPrimary,
-            onPrimary = PinkOnPrimary,
-            primaryContainer = PinkPrimaryContainer,
-            onPrimaryContainer = PinkOnPrimaryContainer,
-            secondary = PinkSecondary,
-            onSecondary = PinkOnSecondary,
-            secondaryContainer = PinkSecondaryContainer,
-            onSecondaryContainer = PinkOnSecondaryContainer,
-            tertiary = PinkTertiary,
-            onTertiary = PinkOnTertiary,
-            tertiaryContainer = PinkTertiaryContainer,
-            onTertiaryContainer = PinkOnTertiaryContainer,
-            background = PinkBackground,
-            onBackground = PinkOnBackground,
-            surface = PinkSurface,
-            onSurface = PinkOnSurface,
-        )
-        GenderTheme.BOY -> lightColorScheme(
-            primary = BluePrimary,
-            onPrimary = BlueOnPrimary,
-            primaryContainer = BluePrimaryContainer,
-            onPrimaryContainer = BlueOnPrimaryContainer,
-            secondary = BlueSecondary,
-            onSecondary = BlueOnSecondary,
-            secondaryContainer = BlueSecondaryContainer,
-            onSecondaryContainer = BlueOnSecondaryContainer,
-            tertiary = BlueTertiary,
-            onTertiary = BlueOnTertiary,
-            tertiaryContainer = BlueTertiaryContainer,
-            onTertiaryContainer = BlueOnTertiaryContainer,
-            background = BlueBackground,
-            onBackground = BlueOnBackground,
-            surface = BlueSurface,
-            onSurface = BlueOnSurface,
-        )
-    }
-}
+// --- BOY DARK color scheme ---
+fun boyDarkColorScheme(): ColorScheme = darkColorScheme(
+    primary = BluePrimaryDark,
+    onPrimary = BlueOnPrimaryDark,
+    primaryContainer = BluePrimaryContainerDark,
+    onPrimaryContainer = BlueOnPrimaryContainerDark,
+    secondary = BlueSecondaryDark,
+    onSecondary = BlueOnSecondaryDark,
+    secondaryContainer = BlueSecondaryContainerDark,
+    onSecondaryContainer = BlueOnSecondaryContainerDark,
+    tertiary = BlueTertiaryDark,
+    onTertiary = BlueOnTertiaryDark,
+    tertiaryContainer = BlueTertiaryContainerDark,
+    onTertiaryContainer = BlueOnTertiaryContainerDark,
+    background = BlueBackgroundDark,
+    onBackground = BlueOnBackgroundDark,
+    surface = BlueSurfaceDark,
+    onSurface = BlueOnSurfaceDark,
+)
 
 @Composable
 fun CollegeApplicationTheme(
@@ -83,13 +105,15 @@ fun CollegeApplicationTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> DarkColorScheme
-        else -> getColorScheme(gender)
+        else -> when (gender) {
+            GenderTheme.GIRL -> if (darkTheme) girlDarkColorScheme() else girlLightColorScheme()
+            GenderTheme.BOY -> if (darkTheme) boyDarkColorScheme() else boyLightColorScheme()
+        }
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography, // Make sure AppTypography is defined in your theme
+        typography = AppTypography, // Make sure AppTypography is defined and imported
         content = content
     )
 }
